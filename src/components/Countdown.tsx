@@ -47,6 +47,7 @@ export function Countdown() {
                             onClick={resetCountdown}
                         >
                             Abandonar ciclo
+                            <img className={styles.vectorIcon} src="icons/close.svg" />
                         </button>
                         ) : (
                             <button 
@@ -54,7 +55,8 @@ export function Countdown() {
                             className={styles.countdownButton}
                             onClick={startCountdown}
                         >
-                            Iniciar um ciclo
+                            Iniciar um ciclo 
+                            <img className={styles.vectorIcon} src="icons/play.svg" />
                         </button>
                     )}
                 </>

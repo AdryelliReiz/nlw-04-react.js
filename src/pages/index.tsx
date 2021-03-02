@@ -9,6 +9,11 @@ import styles from '../styles/pages/Home.module.css';
 
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
+import { SideBar } from '../components/SideBar';
+import { ThemeProvider} from 'styled-components';
+import { useContext } from 'react';
+import { ThemeContextLD } from '../contexts/ThemeContext';
+import GlobalStyled from '../styles/global';
 
 
 interface HomeProps {
@@ -18,35 +23,43 @@ interface HomeProps {
 }
 
 export default function Home(props : HomeProps) {
+  const {theme} = useContext(ThemeContextLD);
 
   return (
-    <ChallengesProvider 
-    level={props.level}
-    currentExperience={props.currentExperience}
-    challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | Move.it</title>
-        </Head>
+    <ThemeProvider theme={theme} >
+      <GlobalStyled/>
+      <ChallengesProvider 
+        level={props.level}
+        currentExperience={props.currentExperience}
+        challengesCompleted={props.challengesCompleted}
+        >
+        
+        <SideBar/>
 
+        <div className={styles.container}>
+          <Head>
+            <title>Início | Move.it</title>
+          </Head>
 
-        <ExperienceBar/>
+          
+          <ExperienceBar/>
 
-        <CountdownProvider>
-          <section>
-            <div >
-              <Profile />
-              <CompletedChallenges/>
-              <Countdown/>
-            </div>
-            <div>
-              <ChallengeBox/>
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
+          <CountdownProvider>
+            <section>
+              <div >
+                <Profile />
+                <CompletedChallenges/>
+                <Countdown/>
+              </div>
+              <div>
+                <ChallengeBox/>
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+      </ChallengesProvider>
+    </ThemeProvider>
+    
   )
 }
 
