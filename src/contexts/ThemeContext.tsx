@@ -11,7 +11,7 @@ interface ThemeContextProps {
 
 interface ThemeContextData {
     toggleTheme: () => void;
-    theme: object;
+    theme: DefaultTheme;
 }
 
 export const ThemeContextLD = createContext({} as ThemeContextData);
