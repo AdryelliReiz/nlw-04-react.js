@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import Link from 'next/link';
 import Switch from 'react-switch';
 import styles from'../styles/components/SideBar.module.css';
 import { ThemeContext } from 'styled-components';
@@ -15,12 +16,18 @@ export function SideBar() {
             <div className={styles.icons}>
                 <img src="icons/logo.svg" />
                 <div className={styles.menu} >
-                    <div className={styles.iconActive} >
-                        <img src="icons/home.svg" alt="Home" />
-                    </div>
-                    <div>
-                        <img src="icons/reanking.svg" alt="Reanking"/>
-                    </div>
+                    <Link href="/">
+                        <div className={styles.iconActive} >
+                            <img src="icons/home.svg" alt="Home" />
+                        </div>
+                    </Link>
+                    
+                    <Link href="/ranking">
+                        <div className={styles.iconActive} >
+                            <img src="icons/reanking.svg" alt="Reanking"/>
+                        </div>
+                    </Link>
+                   
                     
                 </div>
                 <Switch

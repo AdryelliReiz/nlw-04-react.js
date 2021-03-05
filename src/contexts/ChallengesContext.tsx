@@ -52,7 +52,8 @@ export function ChallengesProvider({
         Cookies.set('level', String(level))
         Cookies.set('currentExperience', String(currentExperience))
         Cookies.set('challengesCompleted', String(challengesCompleted))
-    }, [level, currentExperience, challengesCompleted])
+        Cookies.set('activeChallenge', String(activeChallenge))
+    }, [level, currentExperience, challengesCompleted, activeChallenge])
 
     function levelUp() {
         setLevel(level + 1)
@@ -71,12 +72,6 @@ export function ChallengesProvider({
         setActiveChallenge(challenge)
 
         new Audio('/notification.mp3').play()
-
-        if(Notification.permission === 'granted') {
-            new Notification('Novo desafio 🎉', {
-                body: `Valendo ${challenge.amount}XP!`
-            })
-        }
     }
 
     function resetChallenge() {

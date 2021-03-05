@@ -1,0 +1,93 @@
+.main {
+    width: 100%;
+    height: 100%;
+    background: var(--blue);
+    position: fixed;
+}
+
+.background {
+    position: absolute;
+}
+
+.container {
+    height: 100%;
+    margin: 0 7rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.welcome {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0 7rem 7rem 0;
+    flex-direction: column;
+    
+    color: #fff;
+}
+.welcome h1 {
+    font-size: 3rem;
+}
+.welcome > img {
+    margin-bottom: 6rem;
+}
+.githubLogin {
+    color: #f3f3f3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 4rem 0 2rem;
+    font-size: 1.2rem;
+    
+}
+.githubLogin img {
+    margin-right: 1rem;
+}
+
+.inputLogin {
+    display: flex;
+}
+
+.inputLogin input {
+    width: 340px;
+    height: 80px;
+    border: none;
+    border-radius: 6px 0 0 6px;
+    background: linear-gradient(to right, var(--blue-dark), var(--blue) );
+    color: #f3f3f3;
+}
+
+.inputLogin button {
+    border: none;
+    border-radius: 0 6px 6px 0;
+    width: 80px;
+    height: 80px;
+    background: var(--green);
+}
+
+@media(max-width: 1200px) {
+    .container {
+        margin: 1rem;
+        justify-content: center;
+    }
+    
+    .welcome {
+        margin: 1rem;
+        align-items: center;
+    }
+}
+
+@media(max-width: 620px) {
+    .inputLogin input {
+        width: 240px;
+        height: 60px;
+    }
+    
+    .inputLogin button {
+        width: 60px;
+        height: 60px;
+        background: var(--green);
+    }
+}

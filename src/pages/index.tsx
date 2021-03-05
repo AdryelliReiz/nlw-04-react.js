@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
+
 import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
 import { ExperienceBar } from '../components/ExperienceBar'
@@ -14,6 +15,7 @@ import { ThemeProvider} from 'styled-components';
 import { useContext } from 'react';
 import { ThemeContextLD } from '../contexts/ThemeContext';
 import GlobalStyled from '../styles/global';
+import { Footer } from '../components/Footer';
 
 
 interface HomeProps {
@@ -56,6 +58,7 @@ export default function Home(props : HomeProps) {
               </div>
             </section>
           </CountdownProvider>
+          <Footer/>
         </div>
       </ChallengesProvider>
     </ThemeProvider>
@@ -63,11 +66,10 @@ export default function Home(props : HomeProps) {
   )
 }
 
+
 export const getServerSideProps: GetServerSideProps = async(ctx) => {
-  
+
   const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-
-
   return {
     props: {
       level: Number(level),

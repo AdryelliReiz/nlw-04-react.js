@@ -1,0 +1,20 @@
+.header {
+    margin-top: 2rem;
+}
+.header h1 {
+    color: var(--title);
+}
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.subdetails{
+    display: flex;
+    align-items: center;
+}
+
+.subdetails p {
+    margin: 0 2rem 0 1rem;
+}
