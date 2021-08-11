@@ -16,6 +16,8 @@ import { useContext } from 'react';
 import { ThemeContextLD } from '../contexts/ThemeContext';
 import GlobalStyled from '../styles/global';
 import { Footer } from '../components/Footer';
+import { useSession } from 'next-auth/client';
+import axios from 'axios';
 
 
 interface HomeProps {
@@ -25,6 +27,10 @@ interface HomeProps {
 }
 
 export default function Home(props : HomeProps) {
+  const [session, loading] = useSession();
+
+  
+
   const {theme} = useContext(ThemeContextLD);
 
   return (

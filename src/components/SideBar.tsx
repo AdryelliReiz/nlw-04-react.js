@@ -9,7 +9,6 @@ import { ThemeContextLD } from '../contexts/ThemeContext';
 export function SideBar() {
     const theme = useContext(ThemeContext);
     const {toggleTheme} = useContext(ThemeContextLD);
-    
 
     return(
         <div className={styles.sideBar}>
@@ -27,7 +26,6 @@ export function SideBar() {
                             <img src="icons/reanking.svg" alt="Reanking"/>
                         </div>
                     </Link>
-                   
                     
                 </div>
                 <Switch
@@ -41,7 +39,9 @@ export function SideBar() {
                     offColor="#252627"
                     onColor="#f2f3f5"
                 />
-                </div>
+                
+                
+            </div>
         </div>
     )
 }

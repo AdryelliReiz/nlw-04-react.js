@@ -1,12 +1,15 @@
+import { SessionContextProvider } from '../contexts/SessionContent';
 import { ThemeContextProvider } from '../contexts/ThemeContext';
 
 function MyApp({ Component, pageProps }) {
 
 
   return (
-    <ThemeContextProvider>
-      <Component {...pageProps} />
-    </ThemeContextProvider>
+    <SessionContextProvider>
+      <ThemeContextProvider>
+        <Component {...pageProps} />
+      </ThemeContextProvider>
+    </SessionContextProvider>
       
     )
 }
