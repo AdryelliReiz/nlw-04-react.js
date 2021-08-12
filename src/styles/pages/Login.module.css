@@ -33,6 +33,17 @@
 .welcome > img {
   margin-bottom: 6rem;
 }
+
+.welcome p {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.welcome p strong {
+  color: var(--green);
+}
+
 .formLogin {
   max-width: 480px;
   display: block;
@@ -57,6 +68,11 @@
   color: var(--primary);
   font-size: 20px;
   font-weight: 600;
+  transition: 0.6s;
+}
+
+.formLogin button:hover {
+  background: #37b119;
 }
 
 @media (max-width: 1200px) {

@@ -1,16 +1,65 @@
+import { FormEvent, useContext, useState } from 'react';
 import styles from '../../styles/pages/Login.module.css';
 import GlobalStyled from '../../styles/global';
 import { ThemeProvider } from 'styled-components';
-import { FormEvent, useContext } from 'react';
 import { ThemeContextLD } from '../../contexts/ThemeContext';
+import { AuthenticateTokenContext } from '../../contexts/AuthenticateTokenContext';
 import Head from 'next/head';
-
+import { useRouter } from 'next/router';
+import api from '../../services/api';
+import toast, { Toaster } from 'react-hot-toast';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 export default function Login() {
+    const router = useRouter();
     const { theme } = useContext(ThemeContextLD);
+    const { token, setToken } = useContext(AuthenticateTokenContext);
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
     
     async function handleSubmitLogin(event: FormEvent) {
         event.preventDefault();
+
+        if (!emailInput || !passwordInput) {
+            toast.error("Campos invalidos", {
+                icon: "",
+                duration: 5000,
+                position: "bottom-right",
+                style: {
+                    fontSize: '18px',
+                    background: '#fefefe',
+                    border: '3px solid #e83f5b',
+                    borderRadius: '10px'
+                }
+            });
+            return;
+        }
+
+        try {
+            await api.post("/user/authenticate", {
+                email: emailInput,
+                password: passwordInput
+            }).then(res => {
+                Cookies.set('token', res.data, { expires: 7 });
+                setToken(res.data);
+            });
+            
+            router.push("/");
+        } catch (error) {
+            toast.error("Erro ao fazer login!", {
+                icon: "",
+                duration: 5000,
+                position: "bottom-right",
+                style: {
+                    fontSize: '18px',
+                    background: '#fefefe',
+                    border: '3px solid #e83f5b',
+                    borderRadius: '10px'
+                }
+            });
+            return;
+        }
     }
 
     return(
@@ -32,20 +81,29 @@ export default function Login() {
 
                         <form
                             className={styles.formLogin}
-                            onSubmit={() => handleSubmitLogin}
+                            onSubmit={(event) => handleSubmitLogin(event)}
                         >
                             <input
+                                value={emailInput}
+                                onChange={(e) => setEmailInput(e.target.value)}
                                 placeholder="Email"
+                                type="email"
                             />
                             <input
+                                value={passwordInput}
+                                onChange={(e) => setPasswordInput(e.target.value)}
                                 placeholder="Senha"
+                                type="password"
+                                maxLength={8}
                             />
 
                             <button>Login</button>
                         </form>
+                        <p>Não possui uma conta? <strong><Link href="/register" >Registrar</Link></strong></p>
                     </div>
                     
                 </div>
+                <Toaster />
             </div>
         </ThemeProvider>
         

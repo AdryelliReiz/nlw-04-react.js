@@ -48,13 +48,6 @@ export function ChallengesProvider({
        Notification.requestPermission() 
     },[])
 
-    useEffect(() => {
-        Cookies.set('level', String(level))
-        Cookies.set('currentExperience', String(currentExperience))
-        Cookies.set('challengesCompleted', String(challengesCompleted))
-        Cookies.set('activeChallenge', String(activeChallenge))
-    }, [level, currentExperience, challengesCompleted, activeChallenge])
-
     function levelUp() {
         setLevel(level + 1)
         setIsLevelUpModalOpen(true)
