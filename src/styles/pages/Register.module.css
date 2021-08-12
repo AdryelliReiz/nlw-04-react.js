@@ -33,6 +33,17 @@
 .welcome > img {
   margin-bottom: 6rem;
 }
+
+.welcome p {
+  margin-top: 24px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.welcome p strong {
+  color: var(--green);
+}
+
 .formRegister {
   max-width: 480px;
   display: block;

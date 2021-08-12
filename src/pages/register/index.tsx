@@ -7,6 +7,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import api from '../../services/api';
 import toast, { Toaster } from 'react-hot-toast';
+import Link from 'next/link';
 
 
 export default function Register() {
@@ -19,7 +20,22 @@ export default function Register() {
     
     async function handleSubmitRegister(event: FormEvent) {
         event.preventDefault();
-        
+
+        if (!usernameInput || !emailInput || !passwordInput) {
+            toast.error("Campos invalidos", {
+                icon: "",
+                duration: 5000,
+                position: "bottom-right",
+                style: {
+                    fontSize: '18px',
+                    background: '#fefefe',
+                    border: '3px solid #e83f5b',
+                    borderRadius: '10px'
+                }
+            });
+            return
+        }
+
         try {
             await api.post("/user", {
                 username: usernameInput,
@@ -74,6 +90,7 @@ export default function Register() {
                             <input
                                 value={emailInput}
                                 onChange={(e) => setEmailInput(e.target.value)}
+                                type="email"
                                 placeholder="Email"
                             />
                             <input
@@ -81,10 +98,12 @@ export default function Register() {
                                 onChange={(e) => setPasswordInput(e.target.value)}
                                 type="password"
                                 placeholder="Senha"
+                                maxLength={8}
                             />
 
                             <button>Cadastrar</button>
                         </form>
+                        <p>Possui uma conta? <strong><Link href="/login" >Fazer Login</Link></strong></p>
                     </div>
                     
                 </div>
