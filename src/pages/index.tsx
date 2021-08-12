@@ -55,7 +55,7 @@ export default function Home() {
   useEffect(() => {
     const cookieToken = Cookies.get('token');
 
-    if (cookieToken !== '' || undefined) {
+    if (cookieToken !== '' || !undefined) {
       setToken(cookieToken);
     }
   }, []);
@@ -80,7 +80,7 @@ export default function Home() {
 
       <ChallengesProvider 
         level={parseInt(user.level)}
-        currentExperience={parseInt(user.xp)}
+        currentExperience={user.xp}
         challengesCompleted={parseInt(user.completedChallenges)}
         >
         
@@ -96,13 +96,13 @@ export default function Home() {
                   </Head>
 
                   
-                  <ExperienceBar/>
+                  <ExperienceBar user={user} />
 
                   <CountdownProvider>
                     <section>
                       <div >
                         <Profile user={user} />
-                        <CompletedChallenges/>
+                        <CompletedChallenges user={user} />
                         <Countdown/>
                       </div>
                       <div>
