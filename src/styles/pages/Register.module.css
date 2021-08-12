@@ -68,6 +68,11 @@
   color: var(--primary);
   font-size: 20px;
   font-weight: 600;
+  transition: 0.6s;
+}
+
+.formRegister button:hover {
+  background: #37b119;
 }
 
 @media (max-width: 1200px) {

@@ -8,6 +8,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import api from '../../services/api';
 import toast, { Toaster } from 'react-hot-toast';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
 
 export default function Login() {
     const router = useRouter();
@@ -35,12 +37,13 @@ export default function Login() {
         }
 
         try {
-            const tokenAPI = await api.post("/user/authenticate", {
+            await api.post("/user/authenticate", {
                 email: emailInput,
                 password: passwordInput
+            }).then(res => {
+                Cookies.set('token', res.data, { expires: 7 });
+                setToken(res.data);
             });
-
-            setToken(tokenAPI.data);
             
             router.push("/");
         } catch (error) {
@@ -96,6 +99,7 @@ export default function Login() {
 
                             <button>Login</button>
                         </form>
+                        <p>Não possui uma conta? <strong><Link href="/register" >Registrar</Link></strong></p>
                     </div>
                     
                 </div>

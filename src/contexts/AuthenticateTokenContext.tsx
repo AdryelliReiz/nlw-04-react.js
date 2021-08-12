@@ -15,7 +15,7 @@ export function AuthenticateTokenProvider({
     children
 }: ChallengesProviderProps) {
   const [token, setToken] = useState('');
-
+  
     return(
         <AuthenticateTokenContext.Provider 
         value={{
