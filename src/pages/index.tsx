@@ -55,7 +55,7 @@ export default function Home() {
   useEffect(() => {
     const cookieToken = Cookies.get('token');
 
-    if (cookieToken !== '' || undefined) {
+    if (cookieToken !== '' || !undefined) {
       setToken(cookieToken);
     }
   }, []);
