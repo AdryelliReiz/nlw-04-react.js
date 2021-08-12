@@ -13,7 +13,7 @@ interface UserData {
   username: string,
   completedChallenges: string,
   level: string,
-  xp: string
+  xp: number
 }
 
 export const UserDataContext = createContext({} as UserDataContextData);
@@ -25,7 +25,7 @@ export function UserDataContextProvider({
     username: "",
     completedChallenges: "0",
     level: "1",
-    xp: "0"
+    xp: 0
   };
   const [user, setUser] = useState<UserData>(userD);
 
