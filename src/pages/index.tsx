@@ -1,26 +1,28 @@
+import { useCallback, useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import ReactLoading from 'react-loading';
+import api from '../services/api';
+import Cookies from 'js-cookie';
 
 import { CompletedChallenges } from '../components/CompletedChallenges';
 import { Countdown } from '../components/Countdown';
 import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox';
+import { SideBar } from '../components/SideBar';
+import { Footer } from '../components/Footer';
+
 import styles from '../styles/pages/Home.module.css';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyled from '../styles/global';
 
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { SideBar } from '../components/SideBar';
-import { ThemeProvider} from 'styled-components';
-import { useCallback, useContext, useEffect, useState } from 'react';
-import { ThemeContextLD } from '../contexts/ThemeContext';
-import GlobalStyled from '../styles/global';
-import { Footer } from '../components/Footer';
-import { AuthenticateTokenContext } from '../contexts/AuthenticateTokenContext';
-import { useRouter } from 'next/router';
-import api from '../services/api';
 import { UserDataContext } from '../contexts/UserDataContext';
-import Cookies from 'js-cookie';
+import { AuthenticateTokenContext } from '../contexts/AuthenticateTokenContext';
+import { ThemeContextLD } from '../contexts/ThemeContext';
 
 
 export default function Home() {
@@ -85,7 +87,12 @@ export default function Home() {
         >
         
         {isLoading
-          ? (<p>Carregando...</p>)
+          ? (
+            <div className={styles.loading} >
+              <ReactLoading type={'bars'} color={"blue"} width={200} />
+            </div>
+           
+          )
             : (
               <>
                 <SideBar/>
