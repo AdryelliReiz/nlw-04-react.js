@@ -11,8 +11,8 @@ interface ChallengesProviderProps {
 
 interface UserData {
   username: string,
-  completedChallenges: string,
-  level: string,
+  completedChallenges: number,
+  level: number,
   xp: number
 }
 
@@ -23,8 +23,8 @@ export function UserDataContextProvider({
 }: ChallengesProviderProps) {
   const userD = {
     username: "",
-    completedChallenges: "0",
-    level: "1",
+    completedChallenges: 0,
+    level: 1,
     xp: 0
   };
   const [user, setUser] = useState<UserData>(userD);

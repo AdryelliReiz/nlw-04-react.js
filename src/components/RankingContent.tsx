@@ -11,8 +11,8 @@ interface UserRanking {
   username: string;
   email: string;
   password: string;
-  completedChallenges: string;
-  level: string;
+  completedChallenges: number;
+  level: number;
   xp: number;
 }
 

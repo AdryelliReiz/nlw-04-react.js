@@ -57,7 +57,7 @@ export default function Home() {
   useEffect(() => {
     const cookieToken = Cookies.get('token');
 
-    if (cookieToken !== '' || !undefined) {
+    if (cookieToken !== '') {
       setToken(cookieToken);
     }
   }, []);
@@ -65,7 +65,7 @@ export default function Home() {
   useEffect(() => {
     const cookieToken = Cookies.get('token');
     try {
-      if (cookieToken == '') {
+      if (!cookieToken || cookieToken === '') {
         router.push('/login')
       }
     
@@ -81,9 +81,9 @@ export default function Home() {
       <GlobalStyled/>
 
       <ChallengesProvider 
-        level={parseInt(user.level)}
+        level={user.level}
         currentExperience={user.xp}
-        challengesCompleted={parseInt(user.completedChallenges)}
+        challengesCompleted={user.completedChallenges}
         >
         
         {isLoading
