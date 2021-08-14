@@ -4,8 +4,8 @@ import styles from '../styles/components/ExperienceBar.module.css';
 
 interface UserData {
   username: string,
-  completedChallenges: string,
-  level: string,
+  completedChallenges: number,
+  level: number,
   xp: number
 }
 interface IExperienceBarProps {

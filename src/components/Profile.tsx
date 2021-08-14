@@ -2,8 +2,8 @@ import styles from '../styles/components/Profile.module.css'
 
 interface UserData {
   username: string,
-  completedChallenges: string,
-  level: string,
+  completedChallenges: number,
+  level: number,
   xp: number
 }
 interface IProfileProps {
