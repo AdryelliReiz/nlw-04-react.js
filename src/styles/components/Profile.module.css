@@ -1,29 +1,30 @@
 .profileContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .profileContainer > img {
-    width: 6rem;
-    height: 6rem;
-    border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
 }
 
 .profileContainer div {
-    margin-left: 1.5rem;
+  margin-left: 1.5rem;
 }
 
 .profileContainer div strong {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--title);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--title);
 }
 
 .profileContainer div p {
-    font-size: 1.5rem;
-    margin: .5rem;
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
 }
 
 .profileContainer div p img {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }

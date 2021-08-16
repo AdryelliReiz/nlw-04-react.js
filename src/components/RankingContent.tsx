@@ -9,11 +9,9 @@ import { HeaderRanking } from "./HeaderRanking";
 interface UserRanking {
   id: number;
   username: string;
-  email: string;
-  password: string;
-  completedChallenges: number;
   level: number;
   xp: number;
+  completedChallenges: number;
 }
 
 export function RankingContent() {
@@ -57,13 +55,13 @@ export function RankingContent() {
       ) : (
         <div className={styles.ranking}>
           {usersRanking.map((user, index) => (
-            <div className={styles.user}>
+            <div className={styles.user} key={user.id} >
               <div className={styles.position}>
                 <h1>{index + 1}</h1>
               </div>
 
               <div className={styles.profile}>
-                <img src="https://github.com/adryellireiz.png" />
+                <img src="icons/profile.svg" />
                 <div>
                   <strong>{user.username}</strong>
                   <p>

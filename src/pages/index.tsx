@@ -35,22 +35,31 @@ export default function Home() {
   const { theme } = useContext(ThemeContextLD);
 
   const getUserData = useCallback(async () => {
-    const cookieToken = Cookies.get('token');
-    const data = await api.get("/user", {
-      headers: {
-        'Authorization': `token ${cookieToken}`
-      }
-    });
+    try {
+      const cookieToken = Cookies.get('token');
+      const data = await api.get("/user", {
+        headers: {
+          'Authorization': `token ${cookieToken}`
+        }
+      });
 
-    const userData = {
-      username: data.data.username,
-      completedChallenges: data.data.completedChallenges,
-      level: data.data.level,
-      xp: data.data.xp
+      if (!data.data) {
+        throw new Error('User does not exists!');
+      }
+
+      const userData = {
+        username: data.data.username,
+        completedChallenges: data.data.completedChallenges,
+        level: data.data.level,
+        xp: data.data.xp,
+        currentXP: data.data.currentXP,
+      }
+      
+      setUser(userData);
+      setIsLoading(false);
+    } catch (error) {
+      router.push('/login')
     }
-    
-    setUser(userData);
-    setIsLoading(false);
 
   }, []);
 
@@ -68,7 +77,6 @@ export default function Home() {
       if (!cookieToken || cookieToken === '') {
         router.push('/login')
       }
-    
       getUserData();
     }
     catch (error) {
@@ -82,8 +90,9 @@ export default function Home() {
 
       <ChallengesProvider 
         level={user.level}
-        currentExperience={user.xp}
+        currentExperience={user.currentXP}
         challengesCompleted={user.completedChallenges}
+        experience={user.xp}
         >
         
         {isLoading
@@ -103,13 +112,13 @@ export default function Home() {
                   </Head>
 
                   
-                  <ExperienceBar user={user} />
+                  <ExperienceBar/>
 
                   <CountdownProvider>
                     <section>
                       <div >
                         <Profile user={user} />
-                        <CompletedChallenges user={user} />
+                        <CompletedChallenges  />
                         <Countdown/>
                       </div>
                       <div>
