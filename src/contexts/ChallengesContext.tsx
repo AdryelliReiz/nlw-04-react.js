@@ -116,8 +116,9 @@ export function ChallengesProvider({
             levelUp();
         }
 
+        const updateExperience = experience + amount;
         const experienceUpdated = await api.put("/user/xp", {
-            xp: experience + amount
+            xp: updateExperience
         }, {
             headers: {
                 'Authorization': `token ${cookieToken}`

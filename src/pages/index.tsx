@@ -21,12 +21,10 @@ import GlobalStyled from '../styles/global';
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { UserDataContext } from '../contexts/UserDataContext';
-import { AuthenticateTokenContext } from '../contexts/AuthenticateTokenContext';
 import { ThemeContextLD } from '../contexts/ThemeContext';
 
 
 export default function Home() {
-  const { token, setToken } = useContext(AuthenticateTokenContext);
   const router = useRouter();
   const { user, setUser } = useContext(UserDataContext);
   
@@ -43,7 +41,7 @@ export default function Home() {
         }
       });
 
-      if (!data.data) {
+      if (data.status === 401) {
         throw new Error('User does not exists!');
       }
 
@@ -61,14 +59,6 @@ export default function Home() {
       router.push('/login')
     }
 
-  }, []);
-
-  useEffect(() => {
-    const cookieToken = Cookies.get('token');
-
-    if (cookieToken !== '') {
-      setToken(cookieToken);
-    }
   }, []);
 
   useEffect(() => {

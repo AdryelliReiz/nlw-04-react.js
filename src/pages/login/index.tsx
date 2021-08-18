@@ -14,7 +14,7 @@ import Link from 'next/link';
 export default function Login() {
     const router = useRouter();
     const { theme } = useContext(ThemeContextLD);
-    const { token, setToken } = useContext(AuthenticateTokenContext);
+    const { setToken } = useContext(AuthenticateTokenContext);
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
     
@@ -37,17 +37,21 @@ export default function Login() {
         }
 
         try {
-            await api.post("/user/authenticate", {
+            const token = await api.post("/user/authenticate", {
                 email: emailInput,
                 password: passwordInput
-            }).then(res => {
-                Cookies.set('token', res.data, { expires: 7 });
-                setToken(res.data);
             });
+
+            if (token.status == 401) {
+                throw new Error('Token does not exists!');
+            }
+
+            Cookies.set('token', token.data, { expires: 1 });
+            setToken(token.data);
             
             router.push("/");
         } catch (error) {
-            toast.error("Erro ao fazer login!", {
+            toast.error("Email / senha incorreto!", {
                 icon: "",
                 duration: 5000,
                 position: "bottom-right",
