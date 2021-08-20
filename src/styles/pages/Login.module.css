@@ -27,6 +27,7 @@
 
   color: #fff;
 }
+
 .welcome h1 {
   font-size: 3rem;
 }
@@ -84,5 +85,31 @@
   .welcome {
     margin: 1rem;
     align-items: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome p {
+    font-size: 16px;
+  }
+
+  .welcome h1 {
+    font-size: 2.2rem;
+  }
+
+  .welcome > img {
+    width: 90%;
+  }
+
+  .formLogin {
+    width: 320px;
+  }
+
+  .formLogin input {
+    height: 56px;
+  }
+
+  .formLogin button {
+    height: 60px;
   }
 }
