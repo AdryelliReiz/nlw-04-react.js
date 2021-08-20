@@ -23,7 +23,7 @@ export default function Register() {
 
         if (!usernameInput || !emailInput || !passwordInput) {
             toast.error("Campos invalidos", {
-                icon: "",
+                icon: "❌",
                 duration: 5000,
                 position: "bottom-right",
                 style: {
@@ -46,7 +46,7 @@ export default function Register() {
             router.push("/login")
         } catch (err) {
             toast.error("Erro ao cadastrar!", {
-                icon: "",
+                icon: "❌",
                 duration: 5000,
                 position: "bottom-right",
                 style: {

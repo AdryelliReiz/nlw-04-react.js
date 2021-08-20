@@ -23,7 +23,7 @@ export default function Login() {
 
         if (!emailInput || !passwordInput) {
             toast.error("Campos invalidos", {
-                icon: "",
+                icon: "❌",
                 duration: 5000,
                 position: "bottom-right",
                 style: {
@@ -52,7 +52,7 @@ export default function Login() {
             router.push("/");
         } catch (error) {
             toast.error("Email / senha incorreto!", {
-                icon: "",
+                icon: "❌",
                 duration: 5000,
                 position: "bottom-right",
                 style: {
