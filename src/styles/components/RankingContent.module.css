@@ -21,8 +21,8 @@
 .user {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 5fr 3fr;
-  margin-bottom: 5px;
+  grid-template-columns: 1fr 4fr 3fr;
+  margin-bottom: 12px;
 }
 
 .position,
@@ -38,26 +38,21 @@
   justify-content: center;
   align-items: center;
   border-right: 7px solid var(--background);
-  margin-right: 3px;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 .profile {
   display: flex;
   align-items: center;
 }
 .profile div {
-  margin-left: 1.5rem;
+  margin-left: 1rem;
 }
 
 .profile div strong {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--title);
-}
-
-.profile div p {
-  margin: 0.5rem;
 }
 
 .profile div p img {
@@ -71,6 +66,7 @@
 
 .details {
   display: flex;
+  padding-left: 0;
   align-items: center;
   justify-content: center;
   border-bottom-right-radius: 7px;
