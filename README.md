@@ -1,3 +1,1 @@
 # Move.it
-
-## em desenvolvimento...
